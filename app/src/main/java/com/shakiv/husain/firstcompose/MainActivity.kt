@@ -6,8 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -21,19 +25,36 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Text(text = "Hello Shakiv Husain")
+            textFieldComposable()
         }
     }
 }
 
 
 @Preview(
-    showBackground = true, name = "Shakiv Husain", showSystemUi = true, widthDp = 400,
-    heightDp = 400
+    showBackground = true,
+    name = "Shakiv Husain",
+    showSystemUi = true,
 )
 @Composable
 fun previewFunction() {
-    buttonComposable()
+//    textFieldComposable()
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun textFieldComposable() {
+
+    val state = remember { mutableStateOf("") }
+
+    TextField(
+        value = state.value,
+        onValueChange = {
+            state.value = it
+        },
+        label = { Text(text = "Write something..") },
+        placeholder = { Text(text = "Write Something interesting here...") },
+    )
 }
 
 @Composable
