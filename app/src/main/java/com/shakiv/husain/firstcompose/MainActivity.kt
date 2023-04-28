@@ -3,14 +3,18 @@ package com.shakiv.husain.firstcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
@@ -20,6 +24,28 @@ class MainActivity : ComponentActivity() {
             Text(text = "Hello Shakiv Husain")
         }
     }
+}
+
+
+@Preview(
+    showBackground = true, name = "Shakib1", showSystemUi = true
+)
+@Composable
+fun previewFunction() {
+
+    printImage()
+
+}
+
+
+@Composable
+fun printImage() {
+    Image(
+        painter = painterResource(id = R.drawable.my_img),
+        contentDescription = "My Personal Image",
+//        colorFilter = ColorFilter.tint(Color.Blue),
+    contentScale = ContentScale.Crop
+    )
 }
 
 @Composable
@@ -35,9 +61,4 @@ fun sayShakivHusain(name: String) {
 }
 
 
-@Preview(showBackground = true, name = "Shakib1", showSystemUi = true, widthDp = 400, heightDp = 400)
-@Composable
-fun previewFunction() {
-//    sayShakivHusain(name = "Shakib Mansoori")
 
-}
