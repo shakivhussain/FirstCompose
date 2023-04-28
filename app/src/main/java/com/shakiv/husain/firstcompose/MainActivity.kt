@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -28,15 +28,31 @@ class MainActivity : ComponentActivity() {
 
 
 @Preview(
-    showBackground = true, name = "Shakib1", showSystemUi = true
+    showBackground = true, name = "Shakiv Husain", showSystemUi = true, widthDp = 400,
+    heightDp = 400
 )
 @Composable
 fun previewFunction() {
-
-    printImage()
-
+    buttonComposable()
 }
 
+@Composable
+fun buttonComposable() {
+    Button(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.buttonColors(
+            contentColor = Color.White,
+
+            ),
+        enabled = true,
+    ) {
+
+        // Will Accept the content
+
+        sayShakivHusain(name = "Shakiv ")
+        printImage()
+    }
+}
 
 @Composable
 fun printImage() {
@@ -44,7 +60,7 @@ fun printImage() {
         painter = painterResource(id = R.drawable.my_img),
         contentDescription = "My Personal Image",
 //        colorFilter = ColorFilter.tint(Color.Blue),
-    contentScale = ContentScale.Crop
+        contentScale = ContentScale.Crop
     )
 }
 
@@ -55,7 +71,7 @@ fun sayShakivHusain(name: String) {
         fontStyle = FontStyle.Italic,
         fontWeight = FontWeight.ExtraBold,
         color = Color.Blue,
-        fontSize = 36.sp,
+        fontSize = 26.sp,
         textAlign = TextAlign.Center
     )
 }
