@@ -1,6 +1,7 @@
 package com.shakiv.husain.firstcompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -41,22 +42,34 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PreviewItem()
+            Recomposable()
         }
     }
 }
 
 
+@Composable
+private fun Recomposable() {
+    Log.d("TAGRecomposable", "1 Recomposable: ")
+    val state = remember {
+        mutableStateOf(0.0)
+    }
+    Button(onClick = {
+        state.value = Math.random()
+    }) {
+        Log.d("TAGRecomposable", "2 Recomposable: ${state.value}")
+        Text(text = state.value.toString())
+    }
+}
+
 @Preview(
     showBackground = true,
     name = "Shakiv Husain",
-    showSystemUi = true,
-    widthDp = 300,
-    heightDp = 300
+
 )
 @Composable
 fun previewFunction() {
-    ImageRound()
+    Recomposable()
 }
 
 
@@ -66,9 +79,11 @@ private fun ImageRound() {
         painter = painterResource(id = R.drawable.my_img),
         contentDescription = "My Image", contentScale = ContentScale.Crop,
         modifier =
-        Modifier.size(500.dp).clip(CircleShape)
+        Modifier
+            .size(500.dp)
+            .clip(CircleShape)
             .border(2.dp, Color.Green, CircleShape)
-            .shadow(100.dp, RectangleShape,true,Color.Blue)
+            .shadow(100.dp, RectangleShape, true, Color.Blue)
 
     )
 }
